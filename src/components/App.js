@@ -4,7 +4,7 @@ import '../styles/App.css';
 
 // PAGES
 import Home from './Home';
-
+import Store from './Store';
 //Local Storage
 
 class App extends Component {
@@ -18,7 +18,6 @@ class App extends Component {
         ],
     };
 
-
     render() {
         return (
             <div className="App">
@@ -27,8 +26,22 @@ class App extends Component {
                         <Route
                             exact
                             path={'/'}
-                            render={props => (
-                                <Home {...props} loggedInStatus={this.state.loggedInStatus}/>
+                            render={(props) => (
+                                <Home
+                                    {...props}
+                                    loggedInStatus={this.state.loggedInStatus}
+                                    usersData={this.state.users}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path={'/store'}
+                            render={(props) => (
+                                <Store
+                                    {...props}
+                                    loggedInStatus={this.state.loggedInStatus}
+                                />
                             )}
                         />
                     </Switch>
