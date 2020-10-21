@@ -20,7 +20,7 @@ class Logging extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const {username, password} = this.state;
-        this.props.handleSuccessfulLog({username, password});
+        this.props.handleSuccessfulLogin({username, password});
 
     }
 
@@ -36,7 +36,7 @@ class Logging extends Component {
                     />
                     <label for="password">password:</label>
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         onChange={this.handleChange}
                     />

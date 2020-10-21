@@ -9,7 +9,8 @@ import Store from './Store';
 
 class App extends Component {
     state = {
-        loggedInStatus: 'NOR_LOGGED_IN',
+        loggedInStatus: 'NOT_LOGGED_IN',
+        user: {},
         users: [
             {
                 username: 'test',
@@ -17,6 +18,13 @@ class App extends Component {
             },
         ],
     };
+
+    handleLogin = (data) => {
+        this.setState({
+            loggedInStatus: 'LOGGED_IN',
+            user: data
+        })
+    }
 
     render() {
         return (
@@ -29,6 +37,7 @@ class App extends Component {
                             render={(props) => (
                                 <Home
                                     {...props}
+                                    handleLogin={this.handleLogin}
                                     loggedInStatus={this.state.loggedInStatus}
                                     usersData={this.state.users}
                                 />
