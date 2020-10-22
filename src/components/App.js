@@ -17,6 +17,7 @@ class App extends Component {
             {
                 username: 'test',
                 password: '123',
+                bookChart: []
             },
         ],
     };
@@ -29,13 +30,14 @@ class App extends Component {
     };
 
     handleRegistration = data => {
+        //add new user to arr of all users
         const newUser = {
             username: data.username,
-            password: data.password
+            password: data.password,
+            bookChart: data.bookChart
         }
 
-        const usersList = this.state.users;
-        console.log('push');
+        const usersList = this.state.users; 
         usersList.push(newUser);
 
         this.setState({

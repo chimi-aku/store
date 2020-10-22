@@ -7,6 +7,7 @@ class Logging extends Component {
         this.state = {
             username: '',
             password: '',
+            bookChart: []
         };
     }
 
@@ -19,8 +20,8 @@ class Logging extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const {username, password} = this.state;
-        this.props.handleSuccessfulLogin({username, password});
+        const {username, password, bookChart} = this.state;
+        this.props.handleSuccessfulLogin({username, password, bookChart});
 
     }
 
