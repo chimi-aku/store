@@ -3,8 +3,10 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import '../styles/App.css';
 
 // PAGES
-import Home from './Home';
+import HomePage from './HomePage';
+import RegistrationPage from './RegistrationPage';
 import Store from './Store';
+
 //Local Storage
 
 class App extends Component {
@@ -22,7 +24,22 @@ class App extends Component {
     handleLogin = (data) => {
         this.setState({
             loggedInStatus: 'LOGGED_IN',
-            user: data
+            user: data,
+        });
+    };
+
+    handleRegistration = data => {
+        const newUser = {
+            username: data.username,
+            password: data.password
+        }
+
+        const usersList = this.state.users;
+        console.log('push');
+        usersList.push(newUser);
+
+        this.setState({
+            users: usersList
         })
     }
 
@@ -35,9 +52,21 @@ class App extends Component {
                             exact
                             path={'/'}
                             render={(props) => (
-                                <Home
+                                <HomePage
                                     {...props}
                                     handleLogin={this.handleLogin}
+                                    loggedInStatus={this.state.loggedInStatus}
+                                    usersData={this.state.users}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path={'/register'}
+                            render={(props) => (
+                                <RegistrationPage
+                                    {...props}
+                                    handleRegistration={this.handleRegistration}
                                     loggedInStatus={this.state.loggedInStatus}
                                     usersData={this.state.users}
                                 />
