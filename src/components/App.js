@@ -9,6 +9,7 @@ import Store from './Store';
 
 //Local Storage
 
+
 class App extends Component {
     state = {
         loggedInStatus: 'NOT_LOGGED_IN',
@@ -17,10 +18,23 @@ class App extends Component {
             {
                 username: 'test',
                 password: '123',
+                money: 100,
                 bookChart: []
             },
         ],
     };
+    // LOCAL STORAGE
+    componentDidMount() {
+        // LOCAL STORAGE
+        // load
+        
+        if(typeof localStorage !== "undefined" && localStorage.getItem('users') != 'undefined') {
+            const users = JSON.parse(localStorage.getItem('users'));
+            this.setState({users});
+        }
+        
+    }
+
 
     handleLogin = (data) => {
         this.setState({
@@ -34,7 +48,8 @@ class App extends Component {
         const newUser = {
             username: data.username,
             password: data.password,
-            bookChart: data.bookChart
+            bookChart: data.bookChart,
+            money: 100
         }
 
         const usersList = this.state.users; 
@@ -43,7 +58,14 @@ class App extends Component {
         this.setState({
             users: usersList
         })
+
+        // update local storage
+        if(typeof localStorage !== 'undefined') {
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(usersList));
+        }
     }
+
 
     render() {
         return (
