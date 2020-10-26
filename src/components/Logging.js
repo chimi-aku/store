@@ -7,7 +7,8 @@ class Logging extends Component {
         this.state = {
             username: '',
             password: '',
-            bookChart: []
+            bookChart: [],
+            money: props.money 
         };
     }
 
@@ -20,8 +21,8 @@ class Logging extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const {username, password, bookChart} = this.state;
-        this.props.handleSuccessfulLogin({username, password, bookChart});
+        const {username, password, bookChart, money} = this.state;
+        this.props.handleSuccessfulLogin({username, password, bookChart, money});
 
     }
 

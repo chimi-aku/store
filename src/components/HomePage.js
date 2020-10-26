@@ -8,6 +8,7 @@ class HomePage extends Component {
         super(props);
 
         this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+
     }
 
     handleSuccessfulLogin(data) {
@@ -21,8 +22,11 @@ class HomePage extends Component {
                 if (
                     user.username === data.username &&
                     user.password === data.password
-                )
+                ) {
+                    data.money = user.money; // write amount of money for logged user
                     return true;
+                }
+                    
                 
             }
             return false;
@@ -39,11 +43,11 @@ class HomePage extends Component {
             <div>
                 <h1>Home</h1>
                 <h1>Status: {this.props.loggedInStatus}</h1>
-                <Logging handleSuccessfulLogin={this.handleSuccessfulLogin} />
+                <Logging handleSuccessfulLogin={this.handleSuccessfulLogin}/>
                 <NavLink to="/register">
                     <button className="button button-5">
                         <div className="translate"></div>
-                        <a href>Create Account</a>
+                        <a href>Create Account</a> {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}
                     </button>
                 </NavLink>
             </div>

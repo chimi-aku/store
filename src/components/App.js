@@ -18,8 +18,8 @@ class App extends Component {
             {
                 username: 'test',
                 password: '123',
+                bookChart: [],
                 money: 100,
-                bookChart: []
             },
         ],
     };
@@ -29,8 +29,12 @@ class App extends Component {
         // load
         
         if(typeof localStorage !== "undefined" && localStorage.getItem('users') != 'undefined') {
-            const users = JSON.parse(localStorage.getItem('users'));
+            let users = JSON.parse(localStorage.getItem('users'));
+            if(users === null) users = []
             this.setState({users});
+        }
+        else {
+            this.setState({users: []});
         }
         
     }
@@ -103,6 +107,7 @@ class App extends Component {
                                 <Store
                                     {...props}
                                     loggedInStatus={this.state.loggedInStatus}
+                                    user={this.state.user}
                                 />
                             )}
                         />
