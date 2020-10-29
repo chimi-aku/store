@@ -1,5 +1,15 @@
 import React from 'react'
 
+class Book {
+    constructor(image, title, authors, published=2000, price = 0) {
+        this.image = image;
+        this.title = title;
+        this.authors = authors;
+        this.published = published;
+        this.price = price;
+    }
+}
+
 const BookCard = props => {
     const {image, title, authors, published=2000, price = 0 } = props;
 
@@ -14,6 +24,7 @@ const BookCard = props => {
                     <h3 className="price">{`${price}PLN`}</h3>
                 </div>
             </div>
+            <button onClick={props.addBookToChart}>Add to chart</button>
         </div>
     )
 }

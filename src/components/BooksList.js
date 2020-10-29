@@ -12,6 +12,9 @@ const BookList = (props) => {
                             image={book.volumeInfo.imageLinks.thumbnail}
                             title={book.volumeInfo.title}
                             authors={book.volumeInfo.authors}
+
+
+                            addBookToChart={props.addBookToChart}
                         />
                     );
                 

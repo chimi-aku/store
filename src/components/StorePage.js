@@ -19,6 +19,7 @@ class Store extends Component {
     handleSearchBook = (e) => {
         e.preventDefault();
 
+
         let text  = this.state.text;
         text = text.replace(/ /g, '%22');
 
@@ -29,8 +30,20 @@ class Store extends Component {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.items);
-                this.setState({ books: data.items });
-            });
+                if(data.items !== undefined) {
+                    // deal with undefined values
+                    for(const book of data.items) {
+                        if(book.volumeInfo.imageLinks.thumbnail === undefined)
+                            book.volumeInfo.imageLinks.thumbnail = '../imgs/No-image-available.png'
+                        
+                    }
+                    
+                    this.setState({ books: data.items });
+                }
+            })
+            .catch( error => {
+                console.log(error)
+            })
     };
 
     render() {
@@ -66,7 +79,7 @@ class Store extends Component {
                     </form>
                 </section>
 
-                <BooksList books={this.state.books}/>
+                <BooksList books={this.state.books} addBookToChart={this.props.addBookToChart}/>
 
                 <h1>Store</h1>
                 <h1>Status: {this.props.loggedInStatus}</h1>

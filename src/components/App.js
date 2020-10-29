@@ -5,7 +5,8 @@ import '../styles/App.css';
 // PAGES
 import HomePage from './HomePage';
 import RegistrationPage from './RegistrationPage';
-import Store from './Store';
+import StorePage from './StorePage';
+import ChartPage from './ChartPage'
 
 //Local Storage
 
@@ -70,6 +71,11 @@ class App extends Component {
         }
     }
 
+    handleAddBookToChart = (book) => {
+        console.log('Add book')
+        console.log(book);
+    }
+
 
     render() {
         return (
@@ -104,12 +110,23 @@ class App extends Component {
                             exact
                             path={'/store'}
                             render={(props) => (
-                                <Store
+                                <StorePage
                                     {...props}
                                     loggedInStatus={this.state.loggedInStatus}
                                     user={this.state.user}
+
+                                    addBookToChart={this.state.handleAddBookToChart}
                                 />
                             )}
+                        />
+                        <Route
+                            exact
+                            path={'/chart'}
+                            render={(props) => (
+                                <ChartPage
+                                    {...props}
+                                />
+                            )} 
                         />
                     </Switch>
                 </HashRouter>
