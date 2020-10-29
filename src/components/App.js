@@ -6,10 +6,9 @@ import '../styles/App.css';
 import HomePage from './HomePage';
 import RegistrationPage from './RegistrationPage';
 import StorePage from './StorePage';
-import ChartPage from './ChartPage'
+import ChartPage from './ChartPage';
 
 //Local Storage
-
 
 class App extends Component {
     state = {
@@ -28,18 +27,18 @@ class App extends Component {
     componentDidMount() {
         // LOCAL STORAGE
         // load
-        
-        if(typeof localStorage !== "undefined" && localStorage.getItem('users') != 'undefined') {
-            let users = JSON.parse(localStorage.getItem('users'));
-            if(users === null) users = []
-            this.setState({users});
-        }
-        else {
-            this.setState({users: []});
-        }
-        
-    }
 
+        if (
+            typeof localStorage !== 'undefined' &&
+            localStorage.getItem('users') != 'undefined'
+        ) {
+            let users = JSON.parse(localStorage.getItem('users'));
+            if (users === null) users = [];
+            this.setState({ users });
+        } else {
+            this.setState({ users: [] });
+        }
+    }
 
     handleLogin = (data) => {
         this.setState({
@@ -48,34 +47,57 @@ class App extends Component {
         });
     };
 
-    handleRegistration = data => {
+    handleRegistration = (data) => {
         //add new user to arr of all users
         const newUser = {
             username: data.username,
             password: data.password,
             bookChart: data.bookChart,
-            money: 100
-        }
+            money: 100,
+        };
 
-        const usersList = this.state.users; 
+        const usersList = this.state.users;
         usersList.push(newUser);
 
         this.setState({
-            users: usersList
-        })
+            users: usersList,
+        });
 
         // update local storage
-        if(typeof localStorage !== 'undefined') {
+        if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(usersList));
         }
-    }
+    };
 
-    handleAddBookToChart = (book) => {
-        console.log('Add book')
-        console.log(book);
-    }
+    handleAddBookToChart = (newbook) => {
+        console.log('Add book');
+        console.log(newbook);
 
+        // Updating Chart
+        const user = this.state.user;
+        console.log(user);
+        user.bookChart.push(newbook);
+        this.setState({ user });
+
+
+        //update users arr
+        const users = this.state.users;
+        for(const u of users) {
+            if(user.username === u.username) {
+                u.bookChart.push(newbook);
+                break;
+            }
+        }
+        this.setState({ users });
+        
+        // update local storage
+        if (typeof localStorage !== 'undefined') {
+            console.log(localStorage.getItem('users'));
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    };
 
     render() {
         return (
@@ -114,19 +136,16 @@ class App extends Component {
                                     {...props}
                                     loggedInStatus={this.state.loggedInStatus}
                                     user={this.state.user}
-
-                                    addBookToChart={this.state.handleAddBookToChart}
+                                    handleAddBookToChart={
+                                        this.handleAddBookToChart
+                                    }
                                 />
                             )}
                         />
                         <Route
                             exact
                             path={'/chart'}
-                            render={(props) => (
-                                <ChartPage
-                                    {...props}
-                                />
-                            )} 
+                            render={(props) => <ChartPage {...props} />}
                         />
                     </Switch>
                 </HashRouter>

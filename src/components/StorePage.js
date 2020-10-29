@@ -79,7 +79,7 @@ class Store extends Component {
                     </form>
                 </section>
 
-                <BooksList books={this.state.books} addBookToChart={this.props.addBookToChart}/>
+                <BooksList books={this.state.books} handleAddBookToChart={this.props.handleAddBookToChart}/>
 
                 <h1>Store</h1>
                 <h1>Status: {this.props.loggedInStatus}</h1>

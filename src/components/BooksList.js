@@ -14,7 +14,7 @@ const BookList = (props) => {
                             authors={book.volumeInfo.authors}
 
 
-                            addBookToChart={props.addBookToChart}
+                            handleAddBookToChart={props.handleAddBookToChart}
                         />
                     );
                 
