@@ -9,6 +9,7 @@ class Registration extends Component {
             password: '',
             confirmPassword: '',
             bookChart: [],
+            boughtBooks: [],
             money: 100
         };
     }
@@ -22,8 +23,8 @@ class Registration extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const {username, password, confirmPassword, bookChart, money} = this.state;
-        this.props.handleSuccessfulRegistration({username, password, confirmPassword, bookChart, money});
+        const {username, password, confirmPassword, bookChart, boughtBooks, money} = this.state;
+        this.props.handleSuccessfulRegistration({username, password, confirmPassword, bookChart, boughtBooks, money});
 
     }
 

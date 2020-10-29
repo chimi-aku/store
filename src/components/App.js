@@ -19,6 +19,7 @@ class App extends Component {
                 username: 'test',
                 password: '123',
                 bookChart: [],
+                boughtBooks: [],
                 money: 100,
             },
         ],
@@ -53,6 +54,7 @@ class App extends Component {
             username: data.username,
             password: data.password,
             bookChart: data.bookChart,
+            boughtBooks: data.boughtBooks,
             money: 100,
         };
 

@@ -21,8 +21,8 @@ class Logging extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const {username, password, bookChart, money} = this.state;
-        this.props.handleSuccessfulLogin({username, password, bookChart, money});
+        const {username, password, bookChart, boughtBooks, money} = this.state;
+        this.props.handleSuccessfulLogin({username, password, bookChart, boughtBooks, money});
 
     }
 
