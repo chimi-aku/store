@@ -1,1 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
+html {
+  font-size: 10px;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.App {
+  width: 34rem;
+  min-height: 60rem;
+}
+
+
+.bookslist {
+  min-height: 30rem;
+}

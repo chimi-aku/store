@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-import BookCard from './BookCard';
+import BooksList from './BooksList'
 
 class Store extends Component {
     state = {
         text: '',
 
-        books: []
-    }
+        books: [],
+    };
 
     handleChange = (e) => {
         this.setState({
@@ -20,16 +19,19 @@ class Store extends Component {
     handleSearchBook = (e) => {
         e.preventDefault();
 
-        const {text} = this.state;
-        const URL = `https://www.googleapis.com/books/v1/volumes?q=${text}`
+        let text  = this.state.text;
+        text = text.replace(/ /g, '%22');
+
+        const URL = `https://www.googleapis.com/books/v1/volumes?q=${text}`;
+        console.log(URL);
 
         fetch(URL)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.items)
-                this.setState({books: []})
-            })
-    }
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.items);
+                this.setState({ books: data.items });
+            });
+    };
 
     render() {
         return (
@@ -54,13 +56,29 @@ class Store extends Component {
 
                 <section className="search_section">
                     <form onSubmit={this.handleSearchBook}>
-                        <input name="text" type="text" value={this.state.text} onChange={this.handleChange}/>
+                        <input
+                            name="text"
+                            type="text"
+                            value={this.state.text}
+                            onChange={this.handleChange}
+                        />
                         <button type="submit">Search</button>
                     </form>
                 </section>
 
-                <section className="bookslist_section">
-                    <div className="bookslist">
+                <BooksList books={this.state.books}/>
+
+                <h1>Store</h1>
+                <h1>Status: {this.props.loggedInStatus}</h1>
+            </div>
+        );
+    }
+}
+
+export default Store;
+
+/*
+                  <div className="bookslist">
                         {
                             this.state.books.map((book, i) => {
                                 return <BookCard
@@ -74,13 +92,6 @@ class Store extends Component {
                             })
                         }
                     </div>
-                </section>
-                
-                <h1>Store</h1>
-                <h1>Status: {this.props.loggedInStatus}</h1>
-            </div>
-        );
-    }
-}
 
-export default Store;
+
+*/
