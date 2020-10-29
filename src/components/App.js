@@ -8,7 +8,12 @@ import RegistrationPage from './RegistrationPage';
 import StorePage from './StorePage';
 import ChartPage from './ChartPage';
 
-//Local Storage
+//import Book from '../elements/Book'
+
+function clearArr(arr) {
+    while (arr.length > 0) arr.pop();
+}
+
 
 class App extends Component {
     state = {
@@ -76,29 +81,55 @@ class App extends Component {
         console.log('Add book');
         console.log(newbook);
 
-        // Updating Chart
+        // Updating bookChart of current user
         const user = this.state.user;
         console.log(user);
         user.bookChart.push(newbook);
         this.setState({ user });
 
-
         //update users arr
         const users = this.state.users;
-        for(const u of users) {
-            if(user.username === u.username) {
+        for (const u of users) {
+            if (user.username === u.username) {
                 u.bookChart.push(newbook);
                 break;
             }
         }
         this.setState({ users });
-        
+
         // update local storage
         if (typeof localStorage !== 'undefined') {
-            console.log(localStorage.getItem('users'));
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
         }
+    };
+
+    handleClearChart = () => {
+        // clear bookChart in state for current user and users
+        console.log('clear chart');
+
+        const user = this.state.user;
+        clearArr(user.bookChart);
+
+        const users = this.state.users;
+        for (const u of users) {
+            if (user.username === u.username) {
+                clearArr(u.bookChart);
+                break;
+            }
+        }
+
+        this.setState({user, users})
+
+        // update local storage
+    
+        if (typeof localStorage !== 'undefined') {
+            localStorage.removeItem('user');
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
     };
 
     render() {
@@ -147,7 +178,12 @@ class App extends Component {
                         <Route
                             exact
                             path={'/chart'}
-                            render={(props) => <ChartPage {...props} />}
+                            render={(props) => (
+                                <ChartPage
+                                    {...props}
+                                    clearChart={this.handleClearChart}
+                                />
+                            )}
                         />
                     </Switch>
                 </HashRouter>

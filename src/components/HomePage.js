@@ -24,6 +24,7 @@ class HomePage extends Component {
                     user.password === data.password
                 ) {
                     data.money = user.money; // write amount of money for logged user
+                    data.bookChart = user.bookChart; // load content of bookchart for current user from all users
                     return true;
                 }
                     
@@ -45,8 +46,7 @@ class HomePage extends Component {
                 <h1>Status: {this.props.loggedInStatus}</h1>
                 <Logging handleSuccessfulLogin={this.handleSuccessfulLogin}/>
                 <NavLink to="/register">
-                    <button className="button button-5">
-                        <div className="translate"></div>
+                    <button className="button">
                         <a href>Create Account</a> {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}
                     </button>
                 </NavLink>

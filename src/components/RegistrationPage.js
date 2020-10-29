@@ -42,8 +42,7 @@ class RegistrationPage extends Component {
                 <h1>Status: {this.props.loggedInStatus}</h1>
                 <Registration handleSuccessfulRegistration={this.handleSuccessfulRegistration}/>
                 <NavLink to="/">
-                    <button className="button button-5">
-                        <div className="translate"></div>
+                    <button className="button">
                         <a href>Home</a>
                     </button>
                 </NavLink>

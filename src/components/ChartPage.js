@@ -1,15 +1,25 @@
-import React, {Component} from 'react'
-
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class ChartPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
+    state = {
+        moneyToPay: 0,
+    };
+
     render() {
         return (
             <div className="chart">
-                Not decided functional or class Component
+                <header className="chart_header">
+                    <NavLink to="/store">
+                        <button className="button">
+                            <a href>Back</a>{' '}
+                            {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}
+                        </button>
+                    </NavLink>
+                    <button onClick={this.props.clearChart}>Clear chart</button>
+                    <button>Buy</button>
+                </header>
+
             </div>
         );
     }
