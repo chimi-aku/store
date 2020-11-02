@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Registration extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -10,10 +10,9 @@ class Registration extends Component {
             confirmPassword: '',
             bookChart: [],
             boughtBooks: [],
-            money: 100
+            money: 100,
         };
     }
-
 
     handleChange = (e) => {
         this.setState({
@@ -21,38 +20,57 @@ class Registration extends Component {
         });
     };
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        const {username, password, confirmPassword, bookChart, boughtBooks, money} = this.state;
-        this.props.handleSuccessfulRegistration({username, password, confirmPassword, bookChart, boughtBooks, money});
-
-    }
+        const {
+            username,
+            password,
+            confirmPassword,
+            bookChart,
+            boughtBooks,
+            money,
+        } = this.state;
+        this.props.handleSuccessfulRegistration({
+            username,
+            password,
+            confirmPassword,
+            bookChart,
+            boughtBooks,
+            money,
+        });
+    };
 
     render() {
         return (
-            <div className="registration">
-                <form onSubmit={this.handleSubmit}>
+            <form className="form registration_form" onSubmit={this.handleSubmit}>
+                <div className="input">
                     <label for="username">username:</label>
                     <input
                         type="text"
                         name="username"
                         onChange={this.handleChange}
                     />
+                </div>
+                <div className="input">
                     <label for="password">password:</label>
                     <input
                         type="password"
                         name="password"
                         onChange={this.handleChange}
                     />
+                </div>
+                <div className="input">
                     <label for="confirmPassword">confirm password:</label>
                     <input
                         type="password"
                         name="confirmPassword"
                         onChange={this.handleChange}
                     />
-                    <button type="submit">Register</button>
-                </form>
-            </div>
+                </div>
+                <button className="button submit_button" type="submit">
+                    Register
+                </button>
+            </form>
         );
     }
 }

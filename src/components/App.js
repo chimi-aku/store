@@ -7,6 +7,7 @@ import HomePage from './HomePage';
 import RegistrationPage from './RegistrationPage';
 import StorePage from './StorePage';
 import ChartPage from './ChartPage';
+import MyBooksPage from './myBooksPage';
 
 //import Book from '../elements/Book'
 
@@ -33,9 +34,10 @@ class App extends Component {
     componentDidMount() {
         // LOCAL STORAGE
         // load
-
+        
         if (
-            typeof localStorage !== 'undefined' &&
+            
+            typeof localStorage !== 'undefined' && // eslint-disable-next-line
             localStorage.getItem('users') != 'undefined'
         ) {
             let users = JSON.parse(localStorage.getItem('users'));
@@ -182,6 +184,15 @@ class App extends Component {
                                 <ChartPage
                                     {...props}
                                     clearChart={this.handleClearChart}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path={'/mybooks'}
+                            render={(props) => (
+                                <MyBooksPage
+                                    {...props}
                                 />
                             )}
                         />

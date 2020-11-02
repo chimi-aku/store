@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 
 class Logging extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
             username: '',
             password: '',
             bookChart: [],
-            money: props.money 
+            money: props.money,
         };
     }
-
 
     handleChange = (e) => {
         this.setState({
@@ -19,32 +18,45 @@ class Logging extends Component {
         });
     };
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        const {username, password, bookChart, boughtBooks, money} = this.state;
-        this.props.handleSuccessfulLogin({username, password, bookChart, boughtBooks, money});
-
-    }
+        const {
+            username,
+            password,
+            bookChart,
+            boughtBooks,
+            money,
+        } = this.state;
+        this.props.handleSuccessfulLogin({
+            username,
+            password,
+            bookChart,
+            boughtBooks,
+            money,
+        });
+    };
 
     render() {
         return (
-            <div className="logging">
-                <form onSubmit={this.handleSubmit}>
+            <form className="form" onSubmit={this.handleSubmit}>
+                <div className="input">
                     <label for="username">username:</label>
                     <input
                         type="text"
                         name="username"
                         onChange={this.handleChange}
                     />
+                </div>
+                <div className="input">
                     <label for="password">password:</label>
                     <input
                         type="password"
                         name="password"
                         onChange={this.handleChange}
                     />
-                    <button type="submit">Log In</button>
-                </form>
-            </div>
+                </div>
+                <button className="button submit_button"  type="submit">Log In</button>
+            </form>
         );
     }
 }

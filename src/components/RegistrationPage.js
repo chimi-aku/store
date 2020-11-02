@@ -37,9 +37,7 @@ class RegistrationPage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Home</h1>
-                <h1>Status: {this.props.loggedInStatus}</h1>
+            <div className="registration_page">
                 <Registration handleSuccessfulRegistration={this.handleSuccessfulRegistration}/>
                 <NavLink to="/">
                     <button className="button">
@@ -52,3 +50,8 @@ class RegistrationPage extends Component {
 }
 
 export default RegistrationPage;
+
+/*
+                <h1>Home</h1>
+                <h1>Status: {this.props.loggedInStatus}</h1>
+*/

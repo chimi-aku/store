@@ -5,20 +5,21 @@ import BookCard from './BookCard';
 const BookList = (props) => {
     return (
         <div className="book_list">
-            {props.books.map((book, i) => {
-                    return (
-                        <BookCard
-                            key={i}
-                            image={book.volumeInfo.imageLinks.thumbnail}
-                            title={book.volumeInfo.title}
-                            authors={book.volumeInfo.authors}
+                {props.books.map((book, i) => {
+                        return (
+                            <BookCard
+                                key={i}
+                                image={book.volumeInfo.imageLinks.thumbnail}
+                                title={book.volumeInfo.title}
+                                authors={book.volumeInfo.authors}
 
 
-                            handleAddBookToChart={props.handleAddBookToChart}
-                        />
-                    );
-                
-            })}
+                                handleAddBookToChart={props.handleAddBookToChart}
+                            />
+                        );
+                    
+                })}
+
         </div>
     );
 };
