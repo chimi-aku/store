@@ -16,8 +16,8 @@ class HomePage extends Component {
         // Authorising
         const SuccessfulLog = (() => {
             const { usersData } = this.props;
-            console.log(usersData);
-            console.log(data)
+            //console.log(usersData);
+            //console.log(data)
             for (const user of usersData) {
                 if (
                     user.username === data.username &&

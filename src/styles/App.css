@@ -11,6 +11,7 @@ html {
 body {
     min-height: 100vh;
 
+    @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 }
 
@@ -223,6 +224,95 @@ body {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.book {
+    width: 34rem;
+    height: 25rem;
+    margin-bottom: 4rem;
+    position: relative;
+    border-bottom: 1px solid #86a5e6;
+}
+
+.bookcard_container {
+    width: 34rem;
+    height: 30rem;
 
 
+    display: flex;
+}
+
+.bookcard_container img {
+    width: 128px;
+    height: 200px;
+}
+
+.bookcard_desc {
+    width: 100%;
+    padding-left: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.bookcard_desc h2 {
+    font-family: 'Arvo', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.bookcard_desc h3 {
+    font-family: 'Arvo', serif;
+    font-size: 1.5rem;
+}
+
+
+
+.add_to_chart_button {
+    width: 12rem;
+    height: 4rem;
+    margin: 0;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+
+    background: #526ad8;
+    color: #fff;
+    font-size: 1rem;
+}
+
+
+/**************************************************************************/
+/* Chart Page */
+
+.chart_header {
+    width: 100%;
+    margin-bottom: 2rem;
+    max-height: 6rem;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.clear_button {
+    background: #b62020;
+    color: #fff;
+}
+
+.buy_button {
+    background: #267747;
+    color: #fff;
+}
+
+.chart_list {
+    width: 35rem;
+    max-height: 50rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

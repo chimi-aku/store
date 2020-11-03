@@ -83,10 +83,12 @@ class App extends Component {
         console.log('Add book');
         console.log(newbook);
 
+
         // Updating bookChart of current user
         const user = this.state.user;
         console.log(user);
         user.bookChart.push(newbook);
+        user.bookChart.pop();  // WARNING!!!!! I pop because there appered some bug and book pushing double
         this.setState({ user });
 
         //update users arr
@@ -184,6 +186,7 @@ class App extends Component {
                                 <ChartPage
                                     {...props}
                                     clearChart={this.handleClearChart}
+                                    bookChart={this.state.user.bookChart}
                                 />
                             )}
                         />
