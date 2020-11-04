@@ -261,11 +261,13 @@ body {
     font-family: 'Arvo', serif;
     font-size: 1.8rem;
     font-weight: bold;
+    margin-bottom: 2px;
 }
 
 .bookcard_desc h3 {
     font-family: 'Arvo', serif;
     font-size: 1.5rem;
+    margin-bottom: 2px;
 }
 
 
@@ -315,4 +317,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.remove_from_chart_button {
+    width: 14rem;
+    height: 4rem;
+    margin: 0;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+
+    background: #b62020;
+    color: #fff;
+    font-size: 1rem;
 }

@@ -22,7 +22,7 @@ class ChartPage extends Component {
                     <button className="button chart_button buy_button">Buy</button>
                 </header>
 
-                <ChartList bookChart={this.props.bookChart} />
+                <ChartList bookChart={this.props.bookChart} handleRemoveBookFromChart={this.props.handleRemoveBookFromChart} />
 
             </div>
         );

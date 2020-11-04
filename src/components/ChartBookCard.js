@@ -16,6 +16,7 @@ const ChartBookCard = props => {
                     <h3 className="price">{`${price}PLN`}</h3>
                 </div>
             </div>
+            <button className="button remove_from_chart_button" onClick={props.removeBookFromChart}>Remove from chart</button>
         </div>
     )
 }

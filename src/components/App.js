@@ -36,7 +36,6 @@ class App extends Component {
         // load
         
         if (
-            
             typeof localStorage !== 'undefined' && // eslint-disable-next-line
             localStorage.getItem('users') != 'undefined'
         ) {
@@ -89,6 +88,7 @@ class App extends Component {
         console.log(user);
         user.bookChart.push(newbook);
         user.bookChart.pop();  // WARNING!!!!! I pop because there appered some bug and book pushing double
+        user.bookChart.sort((a, b) => a.title.localeCompare(b.title)); // sort alphabetically by title
         this.setState({ user });
 
         //update users arr
@@ -96,9 +96,11 @@ class App extends Component {
         for (const u of users) {
             if (user.username === u.username) {
                 u.bookChart.push(newbook);
+                u.bookChart.sort((a, b) => a.title.localeCompare(b.title)); // sort alphabetically by title
                 break;
             }
         }
+
         this.setState({ users });
 
         // update local storage
@@ -107,6 +109,22 @@ class App extends Component {
             localStorage.setItem('users', JSON.stringify(users));
         }
     };
+
+    handleRemoveBookFromChart = (e) => {
+        console.log('remove from chart');
+        const titleOfBookToRemove = e.target.parentNode.childNodes[0].childNodes[1].childNodes[0].textContent;
+
+        // Find and delete first matching book
+        const user = this.state.user;
+        for(const bookInChart of user.bookChart) {
+            if(titleOfBookToRemove === bookInChart.title){
+                const index = user.bookChart.indexOf(bookInChart);
+                user.bookChart.splice(index, 1);
+                break;
+            }
+        }
+        this.setState({user})
+    }
 
     handleClearChart = () => {
         // clear bookChart in state for current user and users
@@ -187,6 +205,7 @@ class App extends Component {
                                     {...props}
                                     clearChart={this.handleClearChart}
                                     bookChart={this.state.user.bookChart}
+                                    handleRemoveBookFromChart={this.handleRemoveBookFromChart}
                                 />
                             )}
                         />

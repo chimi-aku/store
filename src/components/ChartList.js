@@ -11,7 +11,14 @@ const ChartList = (props) => {
                 //console.log(book)
 
                 return(
-                    <p>Book</p>
+                    <ChartBookCard
+                        key={i}
+                        image={book.image}
+                        title={book.title}
+                        authors={book.authors}
+                        published={book.published}
+                        removeBookFromChart={props.handleRemoveBookFromChart}
+                    />
                 )
             })}
         </div>
