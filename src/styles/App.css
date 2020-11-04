@@ -152,11 +152,12 @@ body {
     width: 100%;
     margin-bottom: 2rem;
     margin-top: 2rem;
-    max-height: 6rem;
+    max-height: 10rem;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 
     font-size: 1.2rem;
     font-family: 'Poppins', sans-serif;
@@ -178,6 +179,24 @@ body {
 .money_box p {
     display: block;
     padding: 0.2rem;
+}
+
+.logout_button {
+    width: 10rem;
+    height: 4rem;
+    margin: 0;
+    font-size: 1.2rem;
+
+    background: #b62020;
+    color: #fff;
+}
+
+.books_buttons {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .chart_button {
@@ -220,7 +239,7 @@ body {
 
 .book_list {
     width: 35rem;
-    max-height: 50rem;
+    max-height: 40rem;
 
     display: flex;
     flex-direction: column;

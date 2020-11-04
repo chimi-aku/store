@@ -57,19 +57,28 @@ class Store extends Component {
                         <p>money</p>
                         <p>{this.props.user.money}</p>
                     </div>
-                    <div className="chart_box">
-                        <NavLink to="/chart">
-                            <button className="button chart_button">
-                                <a href>chart</a>
+                    <div className="logout_box">
+                        <NavLink to="/">
+                            <button className="button logout_button" onClick={this.props.logout}>
+                                <a href>Logout</a>
                             </button>
                         </NavLink>
                     </div>
-                    <div className="myBooks_box">
-                        <NavLink to="/mybooks">
-                            <button className="button chart_button">
-                                <a href>my books</a>
-                            </button>
-                        </NavLink>
+                    <div className="books_buttons">
+                        <div className="chart_box">
+                            <NavLink to="/chart">
+                                <button className="button chart_button">
+                                    <a href>chart</a>
+                                </button>
+                            </NavLink>
+                        </div>
+                        <div className="myBooks_box">
+                            <NavLink to="/mybooks">
+                                <button className="button chart_button">
+                                    <a href>my books</a>
+                                </button>
+                            </NavLink>
+                        </div>
                     </div>
                 </header>
 

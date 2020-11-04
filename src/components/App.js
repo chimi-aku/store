@@ -54,6 +54,13 @@ class App extends Component {
         });
     };
 
+    handleLogout = () => {
+        this.setState({
+            loggedInStatus: 'NOT_LOGGED_IN',
+            user: {},
+        });
+    }
+
     handleRegistration = (data) => {
         //add new user to arr of all users
         const newUser = {
@@ -79,8 +86,8 @@ class App extends Component {
     };
 
     handleAddBookToChart = (newbook) => {
-        console.log('Add book');
-        console.log(newbook);
+        //console.log('Add book');
+        //console.log(newbook);
 
 
         // Updating bookChart of current user
@@ -111,7 +118,7 @@ class App extends Component {
     };
 
     handleRemoveBookFromChart = (e) => {
-        console.log('remove from chart');
+        //console.log('remove from chart');
         const titleOfBookToRemove = e.target.parentNode.childNodes[0].childNodes[1].childNodes[0].textContent;
 
         // Find and delete first matching book
@@ -194,6 +201,7 @@ class App extends Component {
                                     handleAddBookToChart={
                                         this.handleAddBookToChart
                                     }
+                                    logout={this.handleLogout}
                                 />
                             )}
                         />
