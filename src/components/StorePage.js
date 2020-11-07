@@ -79,6 +79,13 @@ class Store extends Component {
                                 </button>
                             </NavLink>
                         </div>
+                        <div className="myBooks_box">
+                            <NavLink to="/money">
+                                <button className="button chart_button">
+                                    <a href>Money</a>
+                                </button>
+                            </NavLink>
+                        </div>
                     </div>
                 </header>
 

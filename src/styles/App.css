@@ -351,3 +351,30 @@ body {
     color: #fff;
     font-size: 1rem;
 }
+
+/**************************************************************************/
+/* My books Page */
+
+
+/**************************************************************************/
+/* Money Page */
+
+.money_header {
+    width: 100%;
+    margin-bottom: 2rem;
+    max-height: 6rem;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.money_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.money_input {
+    margin-bottom: 2rem;
+}

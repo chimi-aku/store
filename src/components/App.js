@@ -8,6 +8,7 @@ import RegistrationPage from './RegistrationPage';
 import StorePage from './StorePage';
 import ChartPage from './ChartPage';
 import MyBooksPage from './myBooksPage';
+import MoneyPage from './MoneyPage';
 
 //import Book from '../elements/Book'
 
@@ -15,12 +16,12 @@ function clearArr(arr) {
     while (arr.length > 0) arr.pop();
 }
 
-
 class App extends Component {
     state = {
         loggedInStatus: 'NOT_LOGGED_IN',
         user: {},
         users: [
+            /*
             {
                 username: 'test',
                 password: '123',
@@ -28,13 +29,14 @@ class App extends Component {
                 boughtBooks: [],
                 money: 100,
             },
+            */
         ],
     };
     // LOCAL STORAGE
     componentDidMount() {
         // LOCAL STORAGE
         // load
-        
+
         if (
             typeof localStorage !== 'undefined' && // eslint-disable-next-line
             localStorage.getItem('users') != 'undefined'
@@ -59,7 +61,7 @@ class App extends Component {
             loggedInStatus: 'NOT_LOGGED_IN',
             user: {},
         });
-    }
+    };
 
     handleRegistration = (data) => {
         //add new user to arr of all users
@@ -89,12 +91,11 @@ class App extends Component {
         //console.log('Add book');
         //console.log(newbook);
 
-
         // Updating bookChart of current user
         const user = this.state.user;
         console.log(user);
         user.bookChart.push(newbook);
-        user.bookChart.pop();  // WARNING!!!!! I pop because there appered some bug and book pushing double
+        user.bookChart.pop(); // WARNING!!!!! I pop because there appered some bug and book pushing double
         user.bookChart.sort((a, b) => a.title.localeCompare(b.title)); // sort alphabetically by title
         this.setState({ user });
 
@@ -119,19 +120,21 @@ class App extends Component {
 
     handleRemoveBookFromChart = (e) => {
         //console.log('remove from chart');
-        const titleOfBookToRemove = e.target.parentNode.childNodes[0].childNodes[1].childNodes[0].textContent;
+        const titleOfBookToRemove =
+            e.target.parentNode.childNodes[0].childNodes[1].childNodes[0]
+                .textContent;
 
         // Find and delete first matching book
         const user = this.state.user;
-        for(const bookInChart of user.bookChart) {
-            if(titleOfBookToRemove === bookInChart.title){
+        for (const bookInChart of user.bookChart) {
+            if (titleOfBookToRemove === bookInChart.title) {
                 const index = user.bookChart.indexOf(bookInChart);
                 user.bookChart.splice(index, 1);
                 break;
             }
         }
-        this.setState({user})
-    }
+        this.setState({ user });
+    };
 
     handleClearChart = () => {
         // clear bookChart in state for current user and users
@@ -148,17 +151,42 @@ class App extends Component {
             }
         }
 
-        this.setState({user, users})
+        this.setState({ user, users });
 
         // update local storage
-    
+
         if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('user');
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
         }
+    };
 
+    handleUpdateMoney = (moneyToAdd) => {
+        console.log('add money');
+        console.log(typeof moneyToAdd);
+
+        // Updating bookChart of current user
+        const user = this.state.user;
+        user.money += moneyToAdd;
+        this.setState({ user });
+
+        //update users arr
+        const users = this.state.users;
+        for (const u of users) {
+            if (user.username === u.username) {
+                u.money += moneyToAdd;
+                break;
+            }
+        }
+        this.setState({ users });
+
+        // update local storage
+        if (typeof localStorage !== 'undefined') {
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users));
+        }
     };
 
     render() {
@@ -213,16 +241,24 @@ class App extends Component {
                                     {...props}
                                     clearChart={this.handleClearChart}
                                     bookChart={this.state.user.bookChart}
-                                    handleRemoveBookFromChart={this.handleRemoveBookFromChart}
+                                    handleRemoveBookFromChart={
+                                        this.handleRemoveBookFromChart
+                                    }
                                 />
                             )}
                         />
                         <Route
                             exact
                             path={'/mybooks'}
+                            render={(props) => <MyBooksPage {...props} />}
+                        />
+                        <Route
+                            exact
+                            path={'/money'}
                             render={(props) => (
-                                <MyBooksPage
+                                <MoneyPage
                                     {...props}
+                                    updateMoney={this.handleUpdateMoney}
                                 />
                             )}
                         />
