@@ -19,7 +19,7 @@ class ChartPage extends Component {
                     <button className="button chart_button buy_button">Buy</button>
                 </header>
                 <div className="summary">
-                    <p>{`Total value: ${this.state.moneyToPay}`}</p>
+                    <p>{`Total chart value: ${this.props.moneyToPay}`}</p>
                 </div>
 
                 <ChartList bookChart={this.props.bookChart} handleRemoveBookFromChart={this.props.handleRemoveBookFromChart} />

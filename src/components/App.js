@@ -72,7 +72,7 @@ class App extends Component {
             bookChart: data.bookChart,
             boughtBooks: data.boughtBooks,
             money: 100,
-            moneyToPay: 0
+            moneyToPay: 0,
         };
 
         const usersList = this.state.users;
@@ -118,6 +118,9 @@ class App extends Component {
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
         }
+
+        this.hadndleUpdateMoneyToPay();
+
     };
 
     handleRemoveBookFromChart = (e) => {
@@ -136,6 +139,8 @@ class App extends Component {
             }
         }
         this.setState({ user });
+
+        this.hadndleUpdateMoneyToPay();
     };
 
     handleClearChart = () => {
@@ -154,7 +159,7 @@ class App extends Component {
         }
 
         this.setState({ user, users });
-
+        
         // update local storage
 
         if (typeof localStorage !== 'undefined') {
@@ -163,15 +168,41 @@ class App extends Component {
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
         }
+
+        this.hadndleUpdateMoneyToPay();
+
     };
 
     hadndleUpdateMoneyToPay = () => {
         let moneyToPay = 0;
-        for(const book of this.props.bookChart) {
+        for (const book of this.state.user.bookChart) {
             moneyToPay += book.price;
         }
-    }
 
+        // Updating bookChart of current user
+        const user = this.state.user;
+        user.moneyToPay = moneyToPay;
+        this.setState({user});
+        
+
+        //update users arr
+        const users = this.state.users;
+        for (const u of users) {
+            if (user.username === u.username) {
+                u.moneyToPay = moneyToPay;
+                break;
+            }
+        }
+
+        // update local storage
+        if (typeof localStorage !== 'undefined') {
+            localStorage.removeItem('user');
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.removeItem('users');
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+    };
 
     handleUpdateMoney = (moneyToAdd) => {
         console.log('add money');
@@ -254,7 +285,7 @@ class App extends Component {
                                     handleRemoveBookFromChart={
                                         this.handleRemoveBookFromChart
                                     }
-                                    userMoney={this.state.user.money}
+                                    moneyToPay={this.state.user.moneyToPay}
                                 />
                             )}
                         />
