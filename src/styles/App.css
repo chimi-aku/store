@@ -311,7 +311,7 @@ body {
 
 .chart_header {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     max-height: 6rem;
 
     display: flex;
@@ -327,6 +327,19 @@ body {
 .buy_button {
     background: #267747;
     color: #fff;
+}
+
+.summary {
+    max-height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.summary p {
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Arvo', serif;
+    font-weight: bold;
+    color: #526ad8;
 }
 
 .chart_list {

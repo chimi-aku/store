@@ -28,6 +28,7 @@ class App extends Component {
                 bookChart: [],
                 boughtBooks: [],
                 money: 100,
+                moneyToPay: 0
             },
             */
         ],
@@ -71,6 +72,7 @@ class App extends Component {
             bookChart: data.bookChart,
             boughtBooks: data.boughtBooks,
             money: 100,
+            moneyToPay: 0
         };
 
         const usersList = this.state.users;
@@ -163,6 +165,14 @@ class App extends Component {
         }
     };
 
+    hadndleUpdateMoneyToPay = () => {
+        let moneyToPay = 0;
+        for(const book of this.props.bookChart) {
+            moneyToPay += book.price;
+        }
+    }
+
+
     handleUpdateMoney = (moneyToAdd) => {
         console.log('add money');
         console.log(typeof moneyToAdd);
@@ -244,6 +254,7 @@ class App extends Component {
                                     handleRemoveBookFromChart={
                                         this.handleRemoveBookFromChart
                                     }
+                                    userMoney={this.state.user.money}
                                 />
                             )}
                         />

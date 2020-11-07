@@ -11,6 +11,7 @@ class Registration extends Component {
             bookChart: [],
             boughtBooks: [],
             money: 100,
+            moneyToPay: 0
         };
     }
 
@@ -29,6 +30,7 @@ class Registration extends Component {
             bookChart,
             boughtBooks,
             money,
+            moneyToPay,
         } = this.state;
         this.props.handleSuccessfulRegistration({
             username,
@@ -37,6 +39,7 @@ class Registration extends Component {
             bookChart,
             boughtBooks,
             money,
+            moneyToPay
         });
     };
 

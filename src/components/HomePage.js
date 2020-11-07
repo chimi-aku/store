@@ -24,6 +24,7 @@ class HomePage extends Component {
                     user.password === data.password
                 ) {
                     data.money = user.money; // write amount of money for logged user
+                    data.moneyToPay = user.moneyToPay;
                     data.bookChart = user.bookChart; // load content of bookchart for current user from all users
                     return true;
                 }

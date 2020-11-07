@@ -9,6 +9,7 @@ class Logging extends Component {
             password: '',
             bookChart: [],
             money: props.money,
+            moneyToPay: props.moneyToPay
         };
     }
 
@@ -26,6 +27,7 @@ class Logging extends Component {
             bookChart,
             boughtBooks,
             money,
+            moneyToPay
         } = this.state;
         this.props.handleSuccessfulLogin({
             username,
@@ -33,6 +35,7 @@ class Logging extends Component {
             bookChart,
             boughtBooks,
             money,
+            moneyToPay
         });
     };
 
