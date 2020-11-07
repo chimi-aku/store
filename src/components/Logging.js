@@ -8,6 +8,7 @@ class Logging extends Component {
             username: '',
             password: '',
             bookChart: [],
+            boughtBooks: [],
             money: props.money,
             moneyToPay: props.moneyToPay
         };

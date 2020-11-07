@@ -7,7 +7,7 @@ import HomePage from './HomePage';
 import RegistrationPage from './RegistrationPage';
 import StorePage from './StorePage';
 import ChartPage from './ChartPage';
-import MyBooksPage from './myBooksPage';
+import MyBooksPage from './MyBooksPage';
 import MoneyPage from './MoneyPage';
 
 //import Book from '../elements/Book'
@@ -120,7 +120,6 @@ class App extends Component {
         }
 
         this.hadndleUpdateMoneyToPay();
-
     };
 
     handleRemoveBookFromChart = (e) => {
@@ -159,7 +158,7 @@ class App extends Component {
         }
 
         this.setState({ user, users });
-        
+
         // update local storage
 
         if (typeof localStorage !== 'undefined') {
@@ -170,7 +169,6 @@ class App extends Component {
         }
 
         this.hadndleUpdateMoneyToPay();
-
     };
 
     hadndleUpdateMoneyToPay = () => {
@@ -182,8 +180,7 @@ class App extends Component {
         // Updating bookChart of current user
         const user = this.state.user;
         user.moneyToPay = moneyToPay;
-        this.setState({user});
-        
+        this.setState({ user });
 
         //update users arr
         const users = this.state.users;
@@ -201,12 +198,11 @@ class App extends Component {
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
         }
-
     };
 
-    handleUpdateMoney = (moneyToAdd) => {
-        console.log('add money');
-        console.log(typeof moneyToAdd);
+    handleUpdateMoney = (moneyToAdd = 0) => {
+        //console.log('add money');
+        //console.log(typeof moneyToAdd);
 
         // Updating bookChart of current user
         const user = this.state.user;
@@ -227,6 +223,47 @@ class App extends Component {
         if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('users');
             localStorage.setItem('users', JSON.stringify(users));
+        }
+    };
+
+    hadnleBuyBooks = () => {
+        console.log('buy books');
+
+        const user = this.state.user;
+        const users = this.state.users;
+
+        // Check the proper amout of money
+        if (user.money > user.moneyToPay) {
+            // add books in chart to Mybooks
+
+            const moneyLeft = parseInt(user.money, 10) - parseInt(user.moneyToPay, 10);
+
+            // update current user
+            user.money = moneyLeft;
+
+            for (const book of user.bookChart) {
+                user.boughtBooks.push(book);
+                user.boughtBooks.pop() // WARNING!!!!! I pop because there appered some bug and book pushing double
+            }
+            user.boughtBooks.sort((a, b) => a.title.localeCompare(b.title)); // sort alphabetically by title
+
+            //update users arr
+            for (const u of users) {
+                if (user.username === u.username) {
+                    for (const book of u.bookChart) {
+                        u.boughtBooks.push(book);
+                    }
+                    user.boughtBooks.sort((a, b) => a.title.localeCompare(b.title)); // sort alphabetically by title
+                    u.money = moneyLeft;
+                    break;
+                }
+            }
+            
+             
+            this.handleUpdateMoney();
+            this.handleClearChart(); // Clearing chart and updating local storage
+        } else {
+            alert('You have not enough money');
         }
     };
 
@@ -286,13 +323,16 @@ class App extends Component {
                                         this.handleRemoveBookFromChart
                                     }
                                     moneyToPay={this.state.user.moneyToPay}
+                                    buyBooks={this.hadnleBuyBooks}
                                 />
                             )}
                         />
                         <Route
                             exact
                             path={'/mybooks'}
-                            render={(props) => <MyBooksPage {...props} />}
+                            render={(props) => <MyBooksPage {...props} boughtBooks={this.state.user.boughtBooks}/>}
+                            
+                            
                         />
                         <Route
                             exact

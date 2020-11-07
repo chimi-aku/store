@@ -16,7 +16,7 @@ class ChartPage extends Component {
                         </button>
                     </NavLink>
                     <button className="button chart_button clear_button" onClick={this.props.clearChart}>Clear</button>
-                    <button className="button chart_button buy_button">Buy</button>
+                    <button className="button chart_button buy_button" onClick={this.props.buyBooks}>Buy</button>
                 </header>
                 <div className="summary">
                     <p>{`Total chart value: ${this.props.moneyToPay}`}</p>

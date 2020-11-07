@@ -26,6 +26,7 @@ class HomePage extends Component {
                     data.money = user.money; // write amount of money for logged user
                     data.moneyToPay = user.moneyToPay;
                     data.bookChart = user.bookChart; // load content of bookchart for current user from all users
+                    data.boughtBooks = user.boughtBooks; // load content of boughtBooks for current user from all users
                     return true;
                 }
                     
