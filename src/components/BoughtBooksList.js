@@ -17,6 +17,7 @@ const BoughtBooksList = (props) => {
                         title={book.title}
                         authors={book.authors}
                         published={book.published}
+                        price={book.price}
                     />
                 )
             })}

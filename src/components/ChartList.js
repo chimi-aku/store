@@ -10,6 +10,7 @@ const ChartList = (props) => {
             {props.bookChart.map((book, i) => {
                 //console.log(book)
 
+
                 return(
                     <ChartBookCard
                         key={i}
@@ -17,6 +18,7 @@ const ChartList = (props) => {
                         title={book.title}
                         authors={book.authors}
                         published={book.published}
+                        price={book.price}
                         removeBookFromChart={props.handleRemoveBookFromChart}
                     />
                 )

@@ -227,7 +227,7 @@ class App extends Component {
     };
 
     hadnleBuyBooks = () => {
-        console.log('buy books');
+        //console.log('buy books');
 
         const user = this.state.user;
         const users = this.state.users;
@@ -341,6 +341,7 @@ class App extends Component {
                                 <MoneyPage
                                     {...props}
                                     updateMoney={this.handleUpdateMoney}
+                                    money={this.state.user.money}
                                 />
                             )}
                         />

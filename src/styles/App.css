@@ -174,11 +174,14 @@ body {
 
     font-size: 1.6rem;
     font-weight: bold;
+
 }
 
 .money_box p {
     display: block;
     padding: 0.2rem;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
 }
 
 .logout_button {
@@ -375,7 +378,7 @@ body {
 .money_header {
     width: 100%;
     margin-bottom: 2rem;
-    max-height: 6rem;
+    max-height: 10rem;
 
     display: flex;
     justify-content: flex-start;

@@ -32,6 +32,10 @@ class MoneyPage extends Component {
                             {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}
                         </button>
                     </NavLink>
+                    <div className="money_box">
+                        <p>money</p>
+                        <p>{this.props.money}</p>
+                    </div>
                 </header>
                 <form className="money_form" onSubmit={this.handleAddMoney}>
                     <div className="input money_input">

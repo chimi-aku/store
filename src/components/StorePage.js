@@ -23,7 +23,7 @@ class Store extends Component {
         let text  = this.state.text;
         text = text.replace(/ /g, '%22');
 
-        const URL = `https://www.googleapis.com/books/v1/volumes?q=${text}`;
+        const URL = `https://www.googleapis.com/books/v1/volumes?q=${text}&filter=paid-ebooks`;
         console.log(URL);
 
         fetch(URL)

@@ -6,7 +6,7 @@ import BoughtBooksList from './BoughtBooksList'
 const MyBooksPage = (props) => {
     return (
         <div className="myBooks_page">
-            <header className="chart_header">
+            <header className="money_header">
                 <NavLink to="/store">
                     <button className="button chart_button">
                         <a href>Back</a>{' '}

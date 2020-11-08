@@ -18,6 +18,11 @@ const BookList = (props) => {
                           4
                       ));
 
+                let price;
+                book.saleInfo.listPrice.amount === undefined
+                    ? (price = '-')
+                    : (price = book.saleInfo.listPrice.amount);
+
                 return (
                     <BookCard
                         key={i}
@@ -25,7 +30,7 @@ const BookList = (props) => {
                         title={book.volumeInfo.title}
                         authors={book.volumeInfo.authors}
                         published={publishedDate}
-                        //price={price}
+                        price={price}
                         handleAddBookToChart={props.handleAddBookToChart}
                     />
                 );
