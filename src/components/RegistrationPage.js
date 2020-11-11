@@ -31,14 +31,17 @@ class RegistrationPage extends Component {
         
         if (SuccessfulReg) {
             this.props.handleRegistration(data);
+            this.props.handleCorrectRegisterData(true)
             this.props.history.push('/'); // redirecting to homepage
-        } else alert('incorrect data!');
+        } else {
+            this.props.handleCorrectRegisterData(false)
+        } 
     }
 
     render() {
         return (
             <div className="registration_page">
-                <Registration handleSuccessfulRegistration={this.handleSuccessfulRegistration}/>
+                <Registration handleSuccessfulRegistration={this.handleSuccessfulRegistration} correctRegisterData={this.props.correctRegisterData}/>
                 <NavLink to="/">
                     <button className="button">
                         <a href>Home</a>

@@ -37,14 +37,17 @@ class HomePage extends Component {
 
         if (SuccessfulLog) {
             this.props.handleLogin(data);
+            this.props.handleCorrectLoginData(true);
             this.props.history.push('/store'); // redirecting to store page
-        } else alert('Wrong username or password!');
+        } else {
+            this.props.handleCorrectLoginData(false);
+        } 
     }
 
     render() {
         return (
             <div className="home_page">
-                <Logging handleSuccessfulLogin={this.handleSuccessfulLogin}/>
+                <Logging handleSuccessfulLogin={this.handleSuccessfulLogin} correctLoginData={this.props.correctLoginData}/>
                 <NavLink to="/register">
                     <button className="button">
                         <a href>Create Account</a> {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}

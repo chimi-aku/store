@@ -19,6 +19,9 @@ function clearArr(arr) {
 class App extends Component {
     state = {
         loggedInStatus: 'NOT_LOGGED_IN',
+        correctLoginData: true,
+        correctRegisterData: true,
+        correctNumber: true,
         user: {},
         users: [
             /*
@@ -88,6 +91,14 @@ class App extends Component {
             localStorage.setItem('users', JSON.stringify(usersList));
         }
     };
+
+    handleCorrectLoginData = (value) => {
+        this.setState({correctLoginData: value})
+    }
+
+    handleCorrectRegisterData = value => {
+        this.setState({correctRegisterData: value})
+    }
 
     handleAddBookToChart = (newbook) => {
         //console.log('Add book');
@@ -177,6 +188,8 @@ class App extends Component {
             moneyToPay += book.price;
         }
 
+        moneyToPay = Math.round(moneyToPay * 100) / 100;;
+
         // Updating bookChart of current user
         const user = this.state.user;
         user.moneyToPay = moneyToPay;
@@ -204,6 +217,8 @@ class App extends Component {
         //console.log('add money');
         //console.log(typeof moneyToAdd);
 
+        moneyToAdd = Math.round(moneyToAdd * 100) / 100;
+
         // Updating bookChart of current user
         const user = this.state.user;
         user.money += moneyToAdd;
@@ -225,6 +240,10 @@ class App extends Component {
             localStorage.setItem('users', JSON.stringify(users));
         }
     };
+
+    handleCorrectNumber = data => {
+        this.setState({correctNumber: data})
+    }
 
     hadnleBuyBooks = () => {
         //console.log('buy books');
@@ -281,6 +300,8 @@ class App extends Component {
                                     handleLogin={this.handleLogin}
                                     loggedInStatus={this.state.loggedInStatus}
                                     usersData={this.state.users}
+                                    handleCorrectLoginData={this.handleCorrectLoginData}
+                                    correctLoginData={this.state.correctLoginData}
                                 />
                             )}
                         />
@@ -293,6 +314,8 @@ class App extends Component {
                                     handleRegistration={this.handleRegistration}
                                     loggedInStatus={this.state.loggedInStatus}
                                     usersData={this.state.users}
+                                    handleCorrectRegisterData={this.handleCorrectRegisterData}
+                                    correctRegisterData={this.state.correctRegisterData}
                                 />
                             )}
                         />
@@ -342,6 +365,8 @@ class App extends Component {
                                     {...props}
                                     updateMoney={this.handleUpdateMoney}
                                     money={this.state.user.money}
+                                    handleCorrectNumber={this.handleCorrectNumber}
+                                    correctNumber={this.state.correctNumber}
                                 />
                             )}
                         />

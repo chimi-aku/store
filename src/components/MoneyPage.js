@@ -16,9 +16,11 @@ class MoneyPage extends Component {
         const money = parseInt(this.state.moneyToAdd, 10)
         if(money > 0) {
             this.props.updateMoney(money);
+            this.props.handleCorrectNumber(true)
         }
         else {
             this.setState({moneyToAdd: 0})
+            this.props.handleCorrectNumber(false)
         }
     }
 
@@ -27,14 +29,14 @@ class MoneyPage extends Component {
             <div className="chart_page">
                 <header className="money_header">
                     <NavLink to="/store">
-                        <button className="button chart_button">
+                        <button className="button chart_button money_back_button">
                             <a href>Back</a>{' '}
                             {/* if i write hre="true" warning disappear, but text looks like a hyperlink */}
                         </button>
                     </NavLink>
-                    <div className="money_box">
+                    <div className="money_box money_box_in_moneypage">
                         <p>money</p>
-                        <p>{this.props.money}</p>
+                        <p>{this.props.money} PLN</p>
                     </div>
                 </header>
                 <form className="money_form" onSubmit={this.handleAddMoney}>
@@ -45,6 +47,7 @@ class MoneyPage extends Component {
                             onChange={this.handleChangeOfMoneyToAdd}
                         />
                     </div>
+                    {this.props.correctNumber === false && <p className="error_info">Incorrent money value</p>}
                     <button
                         className="button chart_button submit_button"
                         type="submit"

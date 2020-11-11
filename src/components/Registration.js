@@ -70,6 +70,7 @@ class Registration extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
+                {this.props.correctRegisterData === false && <p className="error_info">Incorrent register data</p>}
                 <button className="button submit_button" type="submit">
                     Register
                 </button>

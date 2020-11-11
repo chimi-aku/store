@@ -55,7 +55,7 @@ class Store extends Component {
                     </div>
                     <div className="money_box">
                         <p>money</p>
-                        <p>{this.props.user.money}</p>
+                        <p>{this.props.user.money} PLN</p>
                     </div>
                     <div className="logout_box">
                         <NavLink to="/">

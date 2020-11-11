@@ -59,6 +59,7 @@ class Logging extends Component {
                         onChange={this.handleChange}
                     />
                 </div>
+                {this.props.correctLoginData === false && <p className="error_info">Incorrent login data</p>}
                 <button className="button submit_button"  type="submit">Log In</button>
             </form>
         );
